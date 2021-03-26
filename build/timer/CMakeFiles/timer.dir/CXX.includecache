@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/stephensmith/Desktop/testingconan/timer/timer.cpp
+timer.h
+/home/stephensmith/Desktop/testingconan/timer/timer.h
+
+/home/stephensmith/Desktop/testingconan/timer/timer.h
+chrono
+-
+iostream
+-
+

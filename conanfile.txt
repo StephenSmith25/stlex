@@ -1,0 +1,7 @@
+[requires]
+tbb/2020.3
+onedpl/20200330
+
+[generators]
+cmake
+

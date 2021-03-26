@@ -1,0 +1,13 @@
+[
+{
+  "directory": "/home/stephensmith/Desktop/testingconan/build",
+  "command": "/bin/g++-10   -I../timer    -g   -std=gnu++14 -o timer/CMakeFiles/timer.dir/timer.cpp.o -c /home/stephensmith/Desktop/testingconan/timer/timer.cpp",
+  "file": "/home/stephensmith/Desktop/testingconan/timer/timer.cpp"
+},
+
+{
+  "directory": "/home/stephensmith/Desktop/testingconan/build",
+  "command": "/bin/g++-10   -I../timer -isystem /home/stephensmith/.conan/data/tbb/2020.3/_/_/package/96c41e54568df8febe78baf285fc1258aa1d4690/include -isystem /home/stephensmith/.conan/data/onedpl/20200330/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include -isystem /home/stephensmith/.conan/data/onedpl/20200330/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/lib/stdlib    -g   -std=gnu++14 -o for_each/CMakeFiles/for_each.dir/main.cpp.o -c /home/stephensmith/Desktop/testingconan/for_each/main.cpp",
+  "file": "/home/stephensmith/Desktop/testingconan/for_each/main.cpp"
+}
+]
