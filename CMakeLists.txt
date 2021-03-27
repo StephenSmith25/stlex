@@ -10,4 +10,9 @@ conan_basic_setup(TARGETS)
 
 add_subdirectory(timer)
 add_subdirectory(for_each)
-
+add_subdirectory(find)
+add_subdirectory(reduce)
+add_subdirectory(sort)
+add_subdirectory(transform)
+add_subdirectory(count)
+add_subdirectory(none_of)

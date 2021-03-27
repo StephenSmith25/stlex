@@ -8,7 +8,8 @@ void print_time_taken(std::chrono::high_resolution_clock::time_point t1,
       << "Algorithm took: "
       << std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(
              t2 - t1)
-             .count()
+                 .count() /
+             1000
       << " to run"
       << "\n";
 }
