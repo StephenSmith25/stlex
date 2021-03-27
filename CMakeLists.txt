@@ -4,9 +4,22 @@ cmake_minimum_required(VERSION 3.15)
 
 set(CMAKE_CXX_STANDARD 14)
 
+
+# The conan package of goooglebenchmark segfaults - so lets use fetch content
+include(FetchContent)
+set(BENCHMARK_ENABLE_TESTING "OFF")
+FetchContent_Declare(googlebenchmark
+        GIT_REPOSITORY https://github.com/google/benchmark.git
+        GIT_TAG master)
+FetchContent_MakeAvailable(googlebenchmark)
+
+
 # Include Conan Packages
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
+
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 
 add_subdirectory(timer)
 add_subdirectory(for_each)

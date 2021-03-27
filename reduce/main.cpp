@@ -1,34 +1,58 @@
 #include "timer.h"
-#include <pstl/algorithm>
+#include <benchmark/benchmark.h>
 #include <pstl/execution>
 #include <pstl/numeric>
 #include <vector>
 
-int NUMPOINTS = 100000000;
+int NUMPOINTS = 10'000'000;
 
-// Finding a point in a vector
-int main() {
-  std::vector<double> vec(NUMPOINTS, 0.5);
-
-  auto t1 = timer::record_time();
-  auto result = std::reduce(pstl::execution::par, vec.begin(), vec.end());
-  auto t2 = timer::record_time();
-  timer::print_time_taken(t1, t2);
-
-  auto t3 = timer::record_time();
-  auto result1 = std::reduce(pstl::execution::seq, vec.begin(), vec.end());
-  auto t4 = timer::record_time();
-  timer::print_time_taken(t3, t4);
-
-  auto t5 = timer::record_time();
-  double result2 = std::accumulate(vec.begin(), vec.end(), 0.0);
-  auto t6 = timer::record_time();
-  timer::print_time_taken(t5, t6);
-
-  // My timings
-  // Algorithm took: 0.137199 to run - par
-  // Algorithm took: 0.965841 to run - seq
-  // Algorithm took: 0.584989 to run - accumulate
-
-  return 0;
+double Accumulate() {
+  std::vector<double> v(NUMPOINTS, 0.1);
+  for (int i = 0; i < v.size(); ++i) {
+    v[i] = 1.3211 * i;
+  }
+  double result = std::accumulate(v.begin(), v.end(), 0.0);
+  return result;
 }
+
+double ParReduce() {
+  std::vector<double> v(NUMPOINTS, 0.1);
+  for (int i = 0; i < v.size(); ++i) {
+    v[i] = 1.3211 * i;
+  }
+  auto result = std::reduce(pstl::execution::par, v.begin(), v.end());
+  return result;
+}
+
+double SeqReduce() {
+  std::vector<double> v(NUMPOINTS, 0.1);
+  for (int i = 0; i < v.size(); ++i) {
+    v[i] = 1.3211 * i;
+  }
+  auto result = std::reduce(pstl::execution::seq, v.begin(), v.end());
+  return result;
+}
+
+static void BM_ParReduce(benchmark::State &state) {
+  for (auto _ : state) {
+    auto result = ParReduce();
+    benchmark::DoNotOptimize(result);
+  }
+}
+static void BM_SeqReduce(benchmark::State &state) {
+  for (auto _ : state) {
+    auto result = SeqReduce();
+    benchmark::DoNotOptimize(result);
+  }
+}
+static void BM_Accumulate(benchmark::State &state) {
+  for (auto _ : state) {
+    auto result = Accumulate();
+    benchmark::DoNotOptimize(result);
+  }
+}
+
+BENCHMARK(BM_ParReduce);
+BENCHMARK(BM_SeqReduce);
+BENCHMARK(BM_Accumulate);
+BENCHMARK_MAIN();
